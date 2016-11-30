@@ -26,10 +26,9 @@ void loop() {
     val -= 256;
   }
 
-//  int n = 4;
 //  for (int i = 0; i < size; i++) {
-//    analogWrite(myLeds[i], val/n);
-//    n = n * 2;
+//    analogWrite(myLeds[i], val/4);
+//    val = val / 2;
 //  }
 
   if (go)
