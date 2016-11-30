@@ -15,6 +15,20 @@ void loop() {
 //  val = analogRead(0);
   val = intensity;
   Serial.println(val);
+
+// Using this, you consider val == 255 and 256 equals
+  
+//  for (int i = 0; i < size; i++) {
+//    if (val > 255)
+//      analogWrite(myLeds[i], 255);
+//    else if (val < 0)
+//      analogWrite(myLeds[i], 0);
+//    else
+//      analogWrite(myLeds[i], val);
+//    val -= 256;
+//  }
+
+// Using this, you consider val == 255 and 256 different
   
   for (int i = 0; i < size; i++) {
     if (val > 255)
@@ -23,7 +37,7 @@ void loop() {
       analogWrite(myLeds[i], 0);
     else
       analogWrite(myLeds[i], val);
-    val -= 256;
+    val -= 255;
   }
 
 //  for (int i = 0; i < size; i++) {
@@ -35,7 +49,8 @@ void loop() {
     intensity++;
   else
     intensity--;
-  if (intensity == 1023 || intensity == 0)
+//  if (intensity == 1023 || intensity == 0)
+  if (intensity == 1023 - size + 1 || intensity == 0)
     go = !go;
  
   delay(10);
