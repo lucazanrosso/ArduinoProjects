@@ -18,8 +18,8 @@ void setup() {
 }
 
 void loop() {
-//  val = analogRead(0);
-  val = intensity;
+  val = 1023 - analogRead(0);
+//  val = 1023 - intensity;
   Serial.println(val);
 
 // Using this, you consider, for example, val == 255 and 256 equals
