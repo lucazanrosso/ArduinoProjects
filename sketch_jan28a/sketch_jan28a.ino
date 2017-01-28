@@ -19,34 +19,9 @@ void setup() {
 }
 
 void loop() {
-//  val = 1023 - analogRead(0) + 1;
-  val = 1023 - intensity + 1; 
-//  Serial.println(val);
-
-//  val2 = 256 * led;
-//  if (val2 < val) {
-//    while (val2 > 288) {
-//          led++;
-//    }
-//  } else {
-//    while (val2 > 288) {
-//          led++;
-//    }
-//  }
-//  val3 = 256 * led;
-  
-//  if (led > 0) {
-//    while (val2 > 256) {
-//      if (val2 > 288)
-//        led++;
-//      val2 -= 256;
-//    }
-//  } else if ((led < size) {
-//    while (val2 < -32) {
-//      led--;
-//      val2 -= 256;
-//    }
-//  }
+  val = 1023 - analogRead(0) + 1;
+//  val = 1023 - intensity + 1; 
+  led2 = led;
 
   if (firstStart) {
     val2 = val;
@@ -64,19 +39,15 @@ void loop() {
       led--;
     }
   }
-//  Serial.println(val - val2);
   
-  led2 = led;
   val3 = 0;
-  if (val2 > 256) {
+  if (val2 >= 256) {
     led2++;
     val3 = val2 - 256;
-  } else if (val2 < 0) {
+  } else if (val2 <= 0) {
     led2--;
     val3 = - val2;
   }
-  Serial.println(val3);
-  
 
   for (int i = 0; i < size; i++) {
     if (i == led)
@@ -86,7 +57,12 @@ void loop() {
     else
       analogWrite(myLeds[i], 0);
   }
-  
+
+  Serial.println(val);
+  Serial.println(led);
+  Serial.println(val2);
+  Serial.println(val3);
+  Serial.println();
 
   if (go)
     intensity++;
@@ -95,5 +71,5 @@ void loop() {
   if (intensity == 1023 || intensity == 0)
     go = !go;
  
-  delay(20);
+  delay(50);
 }
