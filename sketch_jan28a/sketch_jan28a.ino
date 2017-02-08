@@ -1,3 +1,5 @@
+// "Energy transer experiment" || 4 LEDS
+
 int myLeds[] = {6, 9, 10, 11};
 int size = sizeof(myLeds) / sizeof(int);
 int light = 0;
@@ -18,8 +20,8 @@ void setup() {
 }
 
 void loop() {
-//  light = 1023 - analogRead(0) + 1;
-  light = 1023 - intensity + 1; 
+  light = 1023 - analogRead(0) + 1;
+//  light = 1023 - intensity + 1; 
   led2 = led;
 
   if (firstStart) {
@@ -49,7 +51,7 @@ void loop() {
 
   for (int i = 0; i < size; i++) {
     if (i == led)
-      analogWrite(myLeds[i], 255);
+      analogWrite(myLeds[i], 255 - val2);
     else if (i == led2)
       analogWrite(myLeds[i], val2);
     else
