@@ -20,7 +20,7 @@ void loop(){
   if(Serial.available()){  //Se invece il serial monitor riceve un dato da inviare
     char c = Serial.read();  //La variabile c viene memorizzata e letta dal monitor seriale
     Serial1.write(c);  //Il dato viene inviato al bluetooth perchè sia elaborato e quindi trasmesso
-    Serial.println(c);
+//    Serial.println(c);
     if (c == 'h')
       val = 255;
     if (c == 'l')
