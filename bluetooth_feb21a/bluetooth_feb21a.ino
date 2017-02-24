@@ -31,6 +31,7 @@
 
 int val = 0;
 int LED = 13;
+int availableBytes = 0;
 
 void setup(){
   Serial.begin(9600);  //Inizializziamo l’interfaccia seriale al baud rate dell’AT-mode
@@ -39,25 +40,40 @@ void setup(){
 }
 
 void loop(){
-  if(Serial1.available()){  //Se il bluetooth riceve qualche dato
-    char c = Serial1.read();  //Il dato viene posto in una variabile di tipo char, così da essere adatta sia a lettere che a numeri
-    Serial.write(c);  //Si scrive sul monitor seriale i dati presi dalla variabile, così da poterli osservare
-    if (c == '1')
-      val = 255;
-    if (c == '0')
-      val = 0;
-      analogWrite(LED, val);
-//      Serial.println("LED " + val); 
+//  if(Serial1.available()){  //Se il bluetooth riceve qualche dato
+//    char c = Serial1.read();  //Il dato viene posto in una variabile di tipo char, così da essere adatta sia a lettere che a numeri
+//    Serial.println(c);  //Si scrive sul monitor seriale i dati presi dalla variabile, così da poterli osservare
+//    if (c == '1')
+//      val = 255;
+//    if (c == '0')
+//      val = 0;
+//      analogWrite(LED, val);
+//      Serial.println("LED " + val);  
+//  }
+
+  while(Serial1.available()) {
+      String a = Serial1.readString();// read the incoming data as string
+      Serial.println(a);
   }
+
+//  availableBytes = Serial.available();
+
+
+  
   if(Serial.available()){  //Se invece il serial monitor riceve un dato da inviare
-    char c = Serial.read();  //La variabile c viene memorizzata e letta dal monitor seriale
-    Serial1.write(c);  //Il dato viene inviato al bluetooth perchè sia elaborato e quindi trasmesso
-//    Serial.println(c);
-    if (c == '1')
-      val = 255;
-    if (c == '0')
-      val = 0;
-      analogWrite(LED, val);
+    int c = Serial.read();  //La variabile c viene memorizzata e letta dal monitor seriale
+    Serial1.write(c);  //Il dato viene inviato al bluetooth perchè sia elaborato e quindi trasmesso   
+//    byte buffer[1024];
+//    int bytes = Serial.readBytes(buffer, availableBytes);
+//    Serial1.write(bytes);
+//    String s = String(bytes);
+//    Serial.write(c);
+//    Serial.println();
+//    if (c == '1')
+//      val = 255;
+//    if (c == '0')
+//      val = 0;
+//      analogWrite(LED, val);
 //      Serial.println(val); 
   }
 }
