@@ -8,8 +8,8 @@ void setup(){
 
 void loop(){
   if(Serial1.available()){
-      String a = Serial1.readString();
-      Serial.println(a);
+      String s = Serial1.readString();
+      Serial.println(s);
   }  
   if(Serial.available()){
     char c = Serial.read();
