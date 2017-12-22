@@ -18,8 +18,10 @@ void setup() {
 }
 
 void loop() {
-  Firebase.set("data", i);
+  Firebase.setInt("data", i);
   i++;
+
+  Serial.println(Firebase.getInt("data"));
   
   if (Firebase.failed()) {
     Serial.print("Firebase failed:");
