@@ -29,16 +29,9 @@ void loop() {
       Firebase.setBool(user + "/thief_is_entered", true);
     } else {
       setLed('g');
-    }    
-  } else {
-    setLed('y');
-    verificationCode = -1;
+    }
+    Firebase.setInt(user + "/verification_code", verificationCode);   
   }
-  
-  Firebase.setInt(user + "/verification_code", verificationCode);
-
-  Serial.println(analogRead(A0));
-  Serial.println(verificationCode);
 
   if (Firebase.failed()) {
     Serial.print("Firebase failed:");
