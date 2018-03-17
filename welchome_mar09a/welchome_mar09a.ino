@@ -24,14 +24,18 @@ void loop() {
     if (verificationCode == 4) {
       verificationCode = 0;
     }
-    if (analogRead(A0) > 511 || Firebase.getBool(user + "/thief_is_entered")) {
+    if (analogRead(A0) < 511 || Firebase.getBool(user + "/thief_is_entered")) {
       setLed('r');
       Firebase.setBool(user + "/thief_is_entered", true);
     } else {
       setLed('g');
     }
     Firebase.setInt(user + "/verification_code", verificationCode);   
+  } else {
+    setLed('y');
   }
+
+//  Serial.println(analogRead(A0));
 
   if (Firebase.failed()) {
     Serial.print("Firebase failed:");
